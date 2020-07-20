@@ -5,6 +5,8 @@
 * [Bar Char](#barcharview)
 * [Funnel Char](#funnelcharview)
 
+To use the graphics, add the CHICharts folder to your project and enjoy.
+
 # PieCharView
 ![PieChartView](https://user-images.githubusercontent.com/67891065/87921849-ce5dc600-ca83-11ea-85b1-d3647445f9e0.gif)
 
