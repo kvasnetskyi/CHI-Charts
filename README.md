@@ -1,6 +1,6 @@
 # CHI-Charts
 
-'CHI-Charts' is a set of UIView's heirs, charts written in Swift, which includes:
+'CHI-Charts' is a set of UIView's heirs, charts written in Swift for IOS, which includes:
 * [Pie Chart](#piechartview)
 * [Bar Char](#barcharview)
 * [Funnel Char](#funnelcharview)
