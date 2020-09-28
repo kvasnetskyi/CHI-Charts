@@ -31,7 +31,7 @@ class FunnelChartView: UIView {
     
     // MARK: - Draw Method
     override func draw(_ rect: CGRect) {
-        subviews.forEach { $0.removeFromSuperview() }
+        reloadSelf()
         
         guard let data = data else {
             showEmptyDataView(in: rect)
@@ -46,6 +46,15 @@ class FunnelChartView: UIView {
         findeMaxValue(data: data)
         findeValueSum(data: data)
         setBarViews(with: data)
+    }
+    
+    // MARK: - Reload Self
+    private func reloadSelf() {
+        maxValue = CGFloat()
+        valuesSum = CGFloat()
+        
+        subviews.forEach { $0.removeFromSuperview() }
+        layer.sublayers?.removeAll()
     }
     
     // MARK: - Zero Value in Data Validation

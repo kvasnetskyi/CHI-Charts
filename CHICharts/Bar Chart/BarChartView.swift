@@ -38,7 +38,7 @@ class BarChartView: UIView {
     
     // MARK: - Draw Method
     override func draw(_ rect: CGRect) {
-        subviews.forEach { $0.removeFromSuperview() }
+        reloadSelf()
         
         guard let data = data else {
             showEmptyDataView(in: rect)
@@ -55,6 +55,12 @@ class BarChartView: UIView {
         setScrollView(data: data)
         setBars(data: data)
         setBottomView(data: data)
+    }
+    
+    // MARK: - Reload Self
+    private func reloadSelf() {
+        subviews.forEach { $0.removeFromSuperview() }
+        layer.sublayers?.removeAll()
     }
     
     // MARK: - Zero Value in Data Validation

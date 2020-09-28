@@ -17,7 +17,7 @@ class PieChartView: UIView {
     var data: [PieChartData]?
     var animationDuration: CGFloat?
     
-    /// Pire Chart Variables
+    /// Pie Chart Variables
     var highlightedColor: UIColor?
     var valueSegmentsMainRGBComponent: CGFloat?
     var valueSegmentWidthKoef: CGFloat?
@@ -46,9 +46,9 @@ class PieChartView: UIView {
     
     // MARK: - Draw Method
     override func draw(_ rect: CGRect) {
-        subviews.forEach { $0.removeFromSuperview() }
+        reloadSelf()
         
-        guard let _ = data else {
+        guard var _ = data else {
             showEmptyDataView(in: rect)
             return
         }
@@ -57,6 +57,7 @@ class PieChartView: UIView {
             showEmptyDataView(in: rect)
             return
         }
+        
         findeValueSum(data: data!)
         createСolourRange(data: data!)
         drawSegments(rect, data: data!)
@@ -64,9 +65,25 @@ class PieChartView: UIView {
         drawInfoView(chartHeight: chartHeight, data: data!)
     }
     
+    private func reloadSelf() {
+        subviews.forEach { $0.removeFromSuperview() }
+        layer.sublayers?.removeAll()
+        
+        valuesSum = 0
+        startPercent = 0
+        chartHeight = 0
+        valueLayers = [CAShapeLayer]()
+        highlightedLayer = nil
+        scrollClockwise = false
+        currentPage = 0
+        nextPage = 0
+        scrollPercent = 0
+        previousScrollPercent = 0
+    }
+    
     // MARK: - Zero Value in Data Validation
     private func zeroDataValidation(data: [PieChartData]) -> Bool {
-        self.data = data.filter { $0.value != 0 }
+        self.data = data.filter { $0.value != 0.0 }
         
         return !data.isEmpty
     }
